@@ -1,33 +1,22 @@
 const cTable = require('console.table');
 const inquirer = require('inquirer');
-const mysql = require('mysql')
+const mysql = require('mysql2')
 
 const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "root",
+    password: "Charlie13!",
     database: "employeeTracker_db"
 });
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
 
-    // console.log("Connected to db as id " + connection.threadId);
-});
 
-/*********************
-******* Logic ********
-*********************/
+
 
 getJob();
 
-/*********************
-****** Functions *****
-*********************/
+
 
 function getJob() {
     inquirer
@@ -105,7 +94,7 @@ function add_role() {
     connection.query(`SELECT * FROM department`, function (err, data) {
         if (err) throw err;
 
-        for (let i = 0; i < data.length; i++) { // Loops through and finds the name of all the departments
+        for (let i = 0; i < data.length; i++) { 
             departments.push(data[i].name)
 
         }
@@ -277,7 +266,7 @@ function update_role() {
                         choices: roles
                     }
                 ]).then(function ({ employee_id, role_id }) {
-                    //UPDATE `table_name` SET `column_name` = `new_value' [WHERE condition]
+                   
                     connection.query(`UPDATE employee SET role_id = ${roles.indexOf(role_id) + 1} WHERE id = ${employees.indexOf(employee_id) + 1}`, function (err, data) {
                         if (err) throw err;
 
