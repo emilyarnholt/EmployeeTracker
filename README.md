@@ -1,5 +1,5 @@
 # EmployeeTracker
-<h1="center">Employee Tracker 👋</h1>
+Employee Tracker 👋
   
 ![badge](https://img.shields.io/badge/license-MIT-brightgreen)<br />
 ## Description
